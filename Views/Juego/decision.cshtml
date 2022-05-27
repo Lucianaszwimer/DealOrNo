@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Decision";
+    int k = 0;
+}
+<body>
+<div class="container-Juego" > 
+    <div class="text-center text-white" > 
+        @if (@ViewBag.Turno == 0){
+            <h3>¿Desea aceptar la oferta de cambiar su maletin o se queda con la eleccion del principio?</h3>
+            @while(k<25 && @ViewBag.Maletines[k].Estado==true){
+                k++;
+            }
+            <img class="maletin"src="/Imagenes/Maletines/maletin @(k+1).png" >
+            <img class="maletin"src="/Imagenes/Maletines/maletin @(ViewBag.elegido.NumeroDeMaletin+1).png" >
+        <a  class="btn-lg btn-warning" style="margin-right: 1rem; margin-bottom: 2rem;" href='@Url.Action("final", "Juego", new { decision = "true", MaletinCerrado = k} )'>Cambiar</a>
+        <a  class="btn-lg btn-warning" style="margin-left: 1rem; margin-bottom: 2rem;" href='@Url.Action("final", "Juego", new { decision = "false" } )'>Permanecer</a>
+        }else{
+        <h1>Oferta de la banca: $@string.Format("{0:#,0.00}", ViewBag.OfertaBanca)  </h1>
+        <h5>Importe del maletín abierto: $@ViewBag.ImporteMaletin</h5>
+        <h4>¿Desea aceptar la oferta o seguir jugando por el maletin que usted eligio?</h4>
+    <center>
+        <a class="btn-lg btn-warning" style="margin-right: 1rem; margin-bottom: 2rem;" href='@Url.Action("decision", "Juego", new { decision = "true" } )'>Aceptar</a>
+        <a class="btn-lg btn-warning" style="margin-left: 1rem; margin-bottom: 2rem;" href='@Url.Action("decision", "Juego", new { decision = "false" } )'>Rechazar</a>
+    </center>
+        }
+        </div> 
+    <div class = "importesIzq" >
+            @for (int i=0; i<13; i++){
+                @if(ViewBag.ImportesDescartados.Contains(@ViewBag.importes[i])){
+                    <button class="cajaImporteAbierta" type="button" >$@ViewBag.Importes[i]</button><br>
+               
+                }else{
+                    <button class="cajaImporte" type="button" >$@ViewBag.Importes[i]</button> <br>
+                }
+            }
+        </div> 
+        
+        <div class = "importesDer" >
+            @for (int f=13; f<26; f++){
+                    @if(ViewBag.ImportesDescartados.Contains(@ViewBag.importes[f])){
+                    <button class="cajaImporteAbierta" type="button" >$@ViewBag.Importes[f]</button><br>
+                }else{
+                    <button class="cajaImporte" type="button" >$@ViewBag.Importes[f]</button> <br>
+                }
+            }
+        <br><br><br><br><br><br>
+    </div>
+    </div>
+</body>  

@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Final";
+}
+
+<body>
+    <center>
+        <div class="text-center text-white">
+            @if(@ViewBag.Turno == -1){
+                @if(@ViewBag.decision == "true"){
+                    <h1>Se gano 1$@ViewBag.Maletines[ViewBag.MaletinCerrado].Importe</h1>
+                    <h3>El importe de su maletin era $@ViewBag.Maletines[ViewBag.elegido.NumeroDeMaletin].Importe</h3>
+                }else{
+                    <h1>Se gano $@ViewBag.Maletines[ViewBag.elegido.NumeroDeMaletin].Importe</h1>
+                    <h1>El importe del maletin sin abrir era $@ViewBag.Maletines[ViewBag.MaletinCerrado].Importe</h1>
+                }
+            }else{
+                <h1>Se gano $@string.Format("{0:#,0.00}",@ViewBag.OfertaBanca)</h1> <br>
+                <h3>El importe de su maletin era $@ViewBag.Maletines[ViewBag.elegido.NumeroDeMaletin].Importe</h3>
+            }    
+            
+            
+        </div>
+        <div class="container">
+            <div class="col-sm-10">
+                <img class="imagenFinal" src = "/imagenes/Logo.png" >
+            </div>
+        </div>
+    </center>
+</body>

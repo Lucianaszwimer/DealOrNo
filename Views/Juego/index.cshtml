@@ -1,0 +1,33 @@
+@{
+    ViewData["Title"] = "IndexJuego";
+}
+<body>
+<div class="container">
+<div class="container-Juego" > 
+    <div class="text-center text-white" > 
+        <h1>¡Que comience el juego!</h1>
+        <h2>Para comenzar, elegí el maletín que más te guste.</h2>
+    </div>   
+</div> 
+</div>
+    <div class="importesIzq"> 
+        @for(int i=0; i<13; i++){
+            <div >
+                <p class="cajaImporte"> $@ViewBag.importe[i] </p>
+            </div>
+        }
+    </div>
+    <div class="importesDer"> 
+        @for(int j=13; j<26; j++){
+            <div>
+                <p class="cajaImporte"> $@ViewBag.importe[j] </p>
+            </div>
+        }
+    </div>
+     <div class="maletines col-6"> 
+        @for(int k=0; k<26; k++){
+            <a href='@Url.Action("elegirPrimerMaletin","Juego", new { maletin = k })'>
+                <img class="maletin"src="/Imagenes/Maletines/maletin @(k+1).png" >  </a>
+        }
+    </div>
+</body>   

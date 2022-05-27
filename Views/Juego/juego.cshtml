@@ -1,0 +1,50 @@
+@{
+    ViewData["Title"] = "Juego";
+}
+<body>
+<div class="container-Juego" > 
+    <div class="text-center text-white" > 
+        <h1>Deal Or No Deal</h1>
+
+        <h3>Jugadas restantes: @ViewBag.JugadasRestantes</h3>
+        @if(ViewBag.JugadasRestantes !=6 && ViewBag.volverJuego == "true"){
+            <h3>Importe del maletín abierto: $@ViewBag.ImporteMaletin</h3>
+        }
+
+    </div>   
+</div> 
+        <div class = "importesIzq" >
+            @for (int i=0; i<13; i++){
+                @if(ViewBag.ImportesDescartados.Contains(@ViewBag.importes[i])){
+                    <button class="cajaImporteAbierta" type="button" >$@ViewBag.Importes[i]</button><br>
+               
+                }else{
+                    <button class="cajaImporte" type="button" >$@ViewBag.Importes[i]</button> <br>
+                }
+            }
+        </div> 
+        
+        <div class = "importesDer" >
+            @for (int f=13; f<26; f++){
+                    @if(ViewBag.ImportesDescartados.Contains(@ViewBag.importes[f])){
+                    <button class="cajaImporteAbierta" type="button" >$@ViewBag.Importes[f]</button><br>
+                }else{
+                    <button class="cajaImporte" type="button" >$@ViewBag.Importes[f]</button> <br>
+                }
+            }
+        </div>
+     <div class="maletines col-6"> 
+        @for(int k=0; k<26; k++){
+            @if(@ViewBag.Maletines[k].Estado){
+            <img class="maletin"src="/Imagenes/Maletines/maletin @(k+1).png" style="opacity: 50%">
+                }
+            else{
+            <a href='@Url.Action("eleccionMaletin","Juego", new { maletin = k })'>
+            <img class="maletin"src="/Imagenes/Maletines/maletin @(k+1).png" >  </a>
+            }
+        }
+    </div>
+
+
+
+</body> 
